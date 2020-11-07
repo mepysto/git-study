@@ -1,4 +1,4 @@
 # git-study
 Sass Study
 
-# 아이고 졸려~
+# 전주정보문화산업진흥원
