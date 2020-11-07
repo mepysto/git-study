@@ -1,10 +1,57 @@
-$base-color: #296897;
-$border-dark: rgba($base-color, 0.88);
+//normarlize scss 파일 가져오기 _ , 확장자 없어도 됨
+//@import 'normalize';
 
-.alert {
-  border: 1px solid $border-dark;
-  width: 200px;
-  height: 400px;
-  background-color: pink;
+//변수 <-- 이런 주석은 컴파일시 소스에 포함 안됨
+$theme-primary: #296897;
+$theme-secondary: #878787;
+
+
+%theme-color{
+  color: tomato;
 }
 
+/* 믹스인 */
+@mixin reset-list{
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+@mixin clearfix{
+  &::after{
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+
+.header{
+  background-color: $theme-secondary;
+
+  @extend %theme-color;
+
+  //nesting 중첩패턴
+  //.brand{
+  &__brand{
+    color: $theme-primary;
+    @extend %theme-color;
+  }
+  &__member{
+    @include reset-list;
+    background-color: yellow;
+    //width: 600px / 960px * 100%;
+    width: calc(30em / 960px * 100%);
+    @extend %theme-color;
+    /*
+    &::after{
+      content:"";
+      display: block;
+      clear: both;
+    }
+    */
+    @include clearfix;
+    li{
+      float: left;
+    }
+  }
+}
